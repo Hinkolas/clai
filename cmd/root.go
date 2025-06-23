@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"runtime"
+	"strings"
 
 	"github.com/hinkolas/clai/pkg/application"
 	"github.com/spf13/cobra"
@@ -39,8 +40,13 @@ func Execute() {
 
 func Run(cmd *cobra.Command, args []string) {
 
-	fmt.Println("Hello World")
+    if len(args) < 1 {
+        fmt.Println("Query can't be empty!")
+        os.Exit(1)
+    }
 
-	fmt.Println(app.Path)
+    query := strings.Join(args, " ")
 
+    fmt.Printf("Query: \"%s\"\n", query)
+    
 }

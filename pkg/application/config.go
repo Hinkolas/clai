@@ -19,11 +19,11 @@ func LoadConfig(path string, name string) (*Config, error) {
 	v.SetConfigName(name)
 	v.AddConfigPath(path)
 	v.SetConfigType("yaml")
-
-	fmt.Println(filepath.Join(path, name))
+    
+    configFile := filepath.Join(path, name+".yaml")
 
 	// Check if config file exists
-	if _, err := os.Stat(filepath.Join(path, name)); os.IsNotExist(err) {
+	if _, err := os.Stat(configFile); os.IsNotExist(err) {
 		// File doesn't exist, create it with defaults
 		if err := v.SafeWriteConfig(); err != nil {
 			return nil, fmt.Errorf("failed to create config file: %w", err)
